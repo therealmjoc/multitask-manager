@@ -4,6 +4,15 @@ import time
 name = "Matthew"
 tasks = []
 
+class task:
+    def __init__(self, taskName, dueDate):
+        self.taskName = taskName
+        self.dueDate = dueDate
+
+    def __str__(self):
+        return f"{self.taskName}({self.dueDate})"
+
+
 def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -12,19 +21,21 @@ def homeScreen():
     print("Hi "+name+", you have",len(tasks),"tasks due today.")
 
     print("+------------------------+")
-    for i in range (5):
-        print("|                        |")
+    for task in tasks:
+        print("| ",task,"  |")
     print("+------------------------+")
 
-def newTask(task):
-    tasks.append(task)
+def newTask():
+    thisName = input("Task Name: ")
+    thisDate = input("Input Date (DD/MM/YY): ")
+    thisTask = task(thisName, thisDate)
+    tasks.append(thisTask)
 
 def main():
     homeScreen()
-    thistask = input()
-    newTask(thistask)
+    input("Add new task?")
+    newTask()
     clearScreen()
     homeScreen()
-    print(tasks)
 
 main()
