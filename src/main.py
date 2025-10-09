@@ -1,11 +1,30 @@
-import tkinter as tk
-window = tk.Tk()
-window.title("Multitask Manager")
+import os
+import time
 
-text = tk.Label(window, text="Hello Matthew, you have 5 assignments due today.")
-text.pack()
+name = "Matthew"
+tasks = []
 
-button = tk.Button(window, text='Stop', width=25, command=window.destroy)
-button.pack()
+def clearScreen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-window.mainloop()
+def homeScreen():
+    print(time.time()%24)
+    print("Hi "+name+", you have",len(tasks),"tasks due today.")
+
+    print("+------------------------+")
+    for i in range (5):
+        print("|                        |")
+    print("+------------------------+")
+
+def newTask(task):
+    tasks.append(task)
+
+def main():
+    homeScreen()
+    thistask = input()
+    newTask(thistask)
+    clearScreen()
+    homeScreen()
+    print(tasks)
+
+main()
